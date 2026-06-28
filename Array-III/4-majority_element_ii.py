@@ -82,7 +82,17 @@
 # Two Counters
 #
 # ============================================================
-
+# GOLDEN NOTE
+#
+# Candidate1 and Candidate2 are
+# NOT guaranteed answers.
+#
+# They are only POSSIBLE majority
+# elements.
+#
+# Therefore, a second pass is
+# mandatory to verify their
+# actual frequencies.
 
 # ============================================================
 # 1. BRUTE FORCE
@@ -102,6 +112,7 @@
 # SPACE : O(1)
 #
 # ============================================================
+
 
 def majority_element_brute(arr):
 
@@ -150,15 +161,14 @@ def majority_element_brute(arr):
 #
 # ============================================================
 
+
 def majority_element_better(arr):
 
     frequency = {}
 
     for num in arr:
 
-        frequency[num] = (
-            frequency.get(num, 0) + 1
-        )
+        frequency[num] = frequency.get(num, 0) + 1
 
     answer = []
 
@@ -230,6 +240,7 @@ def majority_element_better(arr):
 #
 # ============================================================
 
+
 def majority_element_optimal(arr):
 
     candidate1 = None
@@ -254,12 +265,28 @@ def majority_element_optimal(arr):
 
             count2 += 1
 
-        elif count1 == 0:
+        # Candidate1 slot is empty.
+        #
+        # Make sure it does not become
+        # the same as Candidate2.
+        #
+        # We always want two DISTINCT
+        # candidates.
+
+        elif count1 == 0 and num != candidate2:
 
             candidate1 = num
             count1 = 1
 
-        elif count2 == 0:
+        # Candidate2 slot is empty.
+        #
+        # Make sure it does not become
+        # the same as Candidate1.
+        #
+        # We always want two DISTINCT
+        # candidates.
+
+        elif count2 == 0 and num != candidate1:
 
             candidate2 = num
             count2 = 1
@@ -424,10 +451,7 @@ print("================================================")
 print("1. BRUTE FORCE")
 print("================================================")
 
-print(
-    "Majority Elements =",
-    majority_element_brute(arr)
-)
+print("Majority Elements =", majority_element_brute(arr))
 
 print()
 
@@ -435,10 +459,7 @@ print("================================================")
 print("2. BETTER APPROACH (HASH MAP)")
 print("================================================")
 
-print(
-    "Majority Elements =",
-    majority_element_better(arr)
-)
+print("Majority Elements =", majority_element_better(arr))
 
 print()
 
@@ -446,10 +467,7 @@ print("================================================")
 print("3. OPTIMAL (EXTENDED MOORE'S VOTING)")
 print("================================================")
 
-print(
-    "Majority Elements =",
-    majority_element_optimal(arr)
-)
+print("Majority Elements =", majority_element_optimal(arr))
 
 print()
 
@@ -461,10 +479,7 @@ arr2 = [3, 2, 3]
 
 print("Array =", arr2)
 
-print(
-    "Majority Elements =",
-    majority_element_optimal(arr2)
-)
+print("Majority Elements =", majority_element_optimal(arr2))
 
 print()
 
@@ -476,10 +491,7 @@ arr3 = [1, 2, 3, 4]
 
 print("Array =", arr3)
 
-print(
-    "Majority Elements =",
-    majority_element_optimal(arr3)
-)
+print("Majority Elements =", majority_element_optimal(arr3))
 
 print()
 

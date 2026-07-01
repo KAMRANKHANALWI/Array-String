@@ -368,17 +368,34 @@ def four_sum_optimal(arr, target):
 
     n = len(arr)
 
-    for i in range(n):
+    # We need at least
+    # three more elements
+    # after i.
 
-        # Skip duplicate first element
+    for i in range(n - 3):
+
+        # Skip duplicate first element.
+        #
+        # Otherwise,
+        # the same quadruplet
+        # would be generated
+        # multiple times.
 
         if i > 0 and arr[i] == arr[i - 1]:
 
             continue
 
-        for j in range(i + 1, n):
+        # We need at least
+        # two more elements
+        # after j.
 
-            # Skip duplicate second element
+        for j in range(i + 1, n - 2):
+
+            # Skip duplicate second element.
+            #
+            # This prevents duplicate
+            # quadruplets with the
+            # same second element.
 
             if (
 
@@ -436,7 +453,15 @@ def four_sum_optimal(arr, target):
                     left += 1
                     right -= 1
 
-                    # Skip duplicate left values
+                    # Move past duplicate values.
+                    #
+                    # We have already used
+                    # this value in the
+                    # current quadruplet.
+                    #
+                    # Using it again would
+                    # generate the same
+                    # answer.
 
                     while (
 
@@ -450,7 +475,11 @@ def four_sum_optimal(arr, target):
 
                         left += 1
 
-                    # Skip duplicate right values
+                    # Move past duplicate values.
+                    #
+                    # This prevents generating
+                    # the same quadruplet
+                    # from the right side.
 
                     while (
 

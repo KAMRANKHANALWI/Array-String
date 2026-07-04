@@ -114,6 +114,7 @@
 #
 # ============================================================
 
+
 def longest_subarray_brute(arr, k):
 
     n = len(arr)
@@ -132,12 +133,7 @@ def longest_subarray_brute(arr, k):
 
             if current_sum == k:
 
-                longest = max(
-
-                    longest,
-                    end - start + 1
-
-                )
+                longest = max(longest, end - start + 1)
 
     return longest
 
@@ -180,6 +176,7 @@ def longest_subarray_brute(arr, k):
 #
 # ============================================================
 
+
 def longest_subarray_better(arr, k):
 
     n = len(arr)
@@ -196,12 +193,7 @@ def longest_subarray_better(arr, k):
 
             if running_sum == k:
 
-                longest = max(
-
-                    longest,
-                    end - start + 1
-
-                )
+                longest = max(longest, end - start + 1)
 
     return longest
 
@@ -266,6 +258,7 @@ def longest_subarray_better(arr, k):
 #
 # ============================================================
 
+
 def longest_subarray_optimal(arr, k):
 
     prefix_sum = 0
@@ -289,13 +282,7 @@ def longest_subarray_optimal(arr, k):
 
         if remaining in prefix_map:
 
-            longest = max(
-
-                longest,
-
-                index - prefix_map[remaining]
-
-            )
+            longest = max(longest, index - prefix_map[remaining])
 
         # Store only the
         # first occurrence.
@@ -401,10 +388,7 @@ print("================================================")
 print("1. BRUTE FORCE")
 print("================================================")
 
-print(
-    "Longest Length =",
-    longest_subarray_brute(arr, k)
-)
+print("Longest Length =", longest_subarray_brute(arr, k))
 
 print()
 
@@ -412,10 +396,7 @@ print("================================================")
 print("2. BETTER APPROACH")
 print("================================================")
 
-print(
-    "Longest Length =",
-    longest_subarray_better(arr, k)
-)
+print("Longest Length =", longest_subarray_better(arr, k))
 
 print()
 
@@ -423,10 +404,7 @@ print("================================================")
 print("3. OPTIMAL (PREFIX SUM + HASH MAP)")
 print("================================================")
 
-print(
-    "Longest Length =",
-    longest_subarray_optimal(arr, k)
-)
+print("Longest Length =", longest_subarray_optimal(arr, k))
 
 print()
 
@@ -443,10 +421,7 @@ print("K     =", k2)
 
 print()
 
-print(
-    "Longest Length =",
-    longest_subarray_optimal(arr2, k2)
-)
+print("Longest Length =", longest_subarray_optimal(arr2, k2))
 
 print()
 
@@ -463,10 +438,7 @@ print("K     =", k3)
 
 print()
 
-print(
-    "Longest Length =",
-    longest_subarray_optimal(arr3, k3)
-)
+print("Longest Length =", longest_subarray_optimal(arr3, k3))
 
 print()
 
@@ -483,10 +455,7 @@ print("K     =", k4)
 
 print()
 
-print(
-    "Longest Length =",
-    longest_subarray_optimal(arr4, k4)
-)
+print("Longest Length =", longest_subarray_optimal(arr4, k4))
 
 print()
 
@@ -595,3 +564,45 @@ print()
 print("The earliest occurrence")
 print("gives the longest")
 print("possible subarray.")
+
+
+"""
+# 1.
+
+Brute
+↓
+Generate Every Subarray
+↓
+Calculate Sum
+↓
+O(N³)
+
+# 2.
+
+Better
+↓
+Generate Every Subarray
+↓
+Running Sum
+↓
+O(N²)
+
+# 3.
+
+Optimal
+↓
+Prefix Sum
+↓
+Hash Map
+↓
+prefix_sum - K
+↓
+Longest Subarray
+↓
+O(N)
+
+If prefix_sum - K has already been seen, 
+then everything between that previous index and 
+the current index must sum to K.
+
+"""
